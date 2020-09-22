@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% block title %}
+project-crypt
+{% endblock %}
+{% block links %}
+<script type="text/javascript">
+  var total_pics_num = 6; // колличество изображений
+  var interval = 5000;    // задержка между изображениями
+  var time_out = 1;       // задержка смены изображений
+  var i = 0;
+  var timeout;
+  var opacity = 100;
+  function fade_to_next() {
+    opacity--;
+    var k = i + 1;
+    var image_now = 'image_' + i;
+    if (i == total_pics_num) k = 1;
+    var image_next = 'image_' + k;
+    document.getElementById(image_now).style.opacity = opacity/100;
+    document.getElementById(image_now).style.filter = 'alpha(opacity='+ opacity +')';
+    document.getElementById(image_next).style.opacity = (100-opacity)/100;
+    document.getElementById(image_next).style.filter = 'alpha(opacity='+ (100-opacity) +')';
+    timeout = setTimeout("fade_to_next()",time_out);
+    if (opacity==1) {
+      opacity = 100;
+      clearTimeout(timeout);
+    }
+  }
+  setInterval (
+    function() {
+      i++;
+      if (i > total_pics_num) i=1;
+      fade_to_next();
+    }, interval
+  );
+</script>
+<style>
+ @keyframes rotating90 {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(90deg); }
+  }
+  #addPost{
+    position:absolute;
+    width:40px;
+    height:40px;
+    margin-right:auto;
+    margin-left:1100px;
+    margin-top:-80px;
+    background: rgba(151,181,203,0);
+    border:0;
+    outline: none;
+  }
+  .center-block{
+    display:block;
+    padding-bottom:10px;
+  }
+  .postBlock{
+    display:block;
+    height:100%;
+    width:810px;
+    display: block;
+    background: rgba(151,181,203,0.2);
+    border-radius: 20px;
+    margin-left:47px;
+    margin-bottom:50px;
+    margin-top:50px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  }
+  .postText{
+    position:relative;
+    margin-left:20px;
+    margin-right:20px;
+    margin-top:10px;
+    word-wrap:break-word;
+    white-space:pre-wrap;
+  }
+  .headPostBlock{
+	margin-top: 0px;
+	text-align: right;
+	background: rgba(151,181,203,1);
+	border-radius: 20px 20px 0px 0px;
+    margin-bottom:-10px;
+  }
+  #author{
+    margin:10px;
+  }
+  #pluspng{
+    height:50px;
+    width:50px;
+    margin-left:-12px;
+    margin-top:-4px;
+
+  }
+  #pluspng:hover{
+    animation: rotating90 0.3s 1;
+    transform: rotate(90deg);
+  }
+  .comments{
+    margin-left:50px;
+  }
+  #Nametext{
+    position:absolute;
+    float:left;
+    margin-top:0px;
+    margin-left:19px;
+  }
+  #users{
+  margin-right:19px;
+  }
+  #BtText{
+  position:absolute;
+  margin-left:900px;
+  margin-top:-70px;
+  }
+
+</style>
+{% endblock %}
+{% block header %}
+
+{% endblock %}
+{% block infohead %}
+Главная страница
+{% endblock %}
+{% block info %}
+Для того чтобы использовать программу выберите нужную функцию в меню...
+{% endblock %}
+{% block main %}<form action="add">
+<span id="BtText">Добавить комментарий</span><button id="addPost" value="Add"><img id="pluspng" src="{{ url_for('static',filename='images/plus.png') }}" alt="Add"></button>
+</form>{% endblock %}
+{% block other %}
+<p id="aboutText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Здесь изображены скриншоты ранней версии программы:</p>
+<div class="gallery">
+  <img src='{{ url_for("static", filename="images/screen/screen11.png") }}' id="image_1" style="position: absolute; margin-left:5px; margin-top:10px;" />
+  <img src='{{ url_for("static", filename="images/screen/screen22.png") }}' id="image_2" style="opacity: 0; filter: alpha(opacity=0); position: absolute;margin-top:10px; margin-left:5px;" />
+  <img src='{{ url_for("static", filename="images/screen/screen33.png") }}' id="image_3" style="opacity: 0; filter: alpha(opacity=0); position: absolute;margin-top:10px; margin-left:5px;" />
+  <img src='{{ url_for("static", filename="images/screen/screen44.png") }}' id="image_4" style="opacity: 0; filter: alpha(opacity=0); position: absolute;margin-top:10px; margin-left:5px;" />
+  <img src='{{ url_for("static", filename="images/screen/screen55.png") }}' id="image_5" style="opacity: 0; filter: alpha(opacity=0); position: absolute;margin-top:10px; margin-left:5px;margin-top:200px;" />
+  <img src='{{ url_for("static", filename="images/screen/screen66.png") }}' id="image_6" style="opacity: 0; filter: alpha(opacity=0); position: absolute;margin-top:10px; margin-left:5px;margin-top:200px;" />
+</div>
+<h3 class="comments">Комментарии:</h3>
+{% for post,user in posts %}
+<div class="postBlock"><div class="headPostBlock"><p id="Nametext">Имя пользователя: </p> <p id="users">{{ user }}</p></div><p class="postText">{{ post }}</p></div>
+{% endfor %}
+{% endblock %}

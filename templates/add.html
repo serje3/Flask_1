@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}
+project-crypt
+{% endblock %}
+{% block links %}
+<style>
+    @keyframes rotating90 {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(90deg); }
+    }
+    .center-block{
+        padding-bottom:10px;
+    }
+    #postText{
+        background: rgba(151,181,203,0.2);
+        resize:none;
+        border-radius: 3px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        width:250px;
+        height:40px;
+        margin-left:300px;
+        margin-bottom:20px;
+    }
+    #add{
+        position:absolute;
+        width:40px;
+        height:40px;
+        background: rgba(151,181,203,0);
+        border:0;
+        border-radius: 3px;
+        margin-left:5px;
+        margin-top:3px;
+        outline:0;
+    }
+    #pluspng{
+    height:50px;
+    width:50px;
+    margin-left:-12px;
+    margin-top:-4px;
+
+  }
+  #pluspng:hover{
+    animation: rotating90 0.3s 1;
+    transform: rotate(90deg);
+  }
+  #username{
+    border-radius: 3px;
+    float:right;
+    background: rgba(151,181,203,0.2);
+    border:0;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    margin-top:50px;
+    margin-right:5px;
+  }
+</style>
+{% endblock %}
+{% block infohead %}
+Добавить комментарий
+{% endblock %}
+{% block info %}
+{% endblock %}
+{% block other %}
+<form action="added" method="post">
+    <textarea name="text" id="postText" cols="30" rows="10" maxlength="1000" placeholder="Текст комментария"></textarea>
+    <input name="user" id="username" placeholder="Псевдоним" maxlength="20">
+    <button id="add" value="Добавить пост"><img id="pluspng" src="{{ url_for('static',filename='images/plus.png') }}" alt="Add"></button>
+</form>
+{% endblock %}

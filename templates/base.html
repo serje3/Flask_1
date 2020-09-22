@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Manrope&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/stylesheet16.css') }}">
+	<style>
+		header{
+		min-width: 1230px;
+		}
+	</style>
+	{% block links %}{% endblock %}
+</head>
+<body>
+	<header>
+		<div class="headblock"><a href="/home" >
+		<!-- <img id="logo" src="C:\Users\russi\Downloads\Telegram Desktop\Безымянный-13.png"></img> -->
+		<p id="mainpage" class="fontone">Project-crypt</p></a></div>
+<!--		<div class="sign-in">-->
+<!--			<form action="login_in" name="">-->
+<!--			<input class="signplace" id="log"  type="text" placeholder="Логин">-->
+<!--			<input class="signplace" id="pass" type="password" placeholder="Пароль">-->
+<!--			<button id="btsub" type="submit" ></button>-->
+<!--			</form>-->
+<!--		</div>-->
+		{% block header %}{% endblock %}
+	</header>
+	<div class="block">{% block main %}{% endblock %}<div class="center-block">
+		<h2 id="info">{% block infohead %}{% endblock %}</h1>
+		<p id="aboutText">{% block info %}{% endblock %}</p>
+			{% block other %}{% endblock %}
+	</div>
+	<aside>
+			<h3 id="menu">Меню</h3>
+			<ul>
+				{% block li %}{% endblock %}
+				<li class="m1">Выберите действие<img src="{{ url_for('static', filename='images/downarrow.png') }}">
+					<ul class="submenu">
+        				<li><a href="/encrypt">Зашифровать</a></li>
+        				<li><a href="/decrypt">Расшифровать</a></li>
+      				</ul>
+      			</li>
+			</ul>
+			<div class="blockAbout">
+				<h3 id="about">О сайте</h3>
+			<p id="aboutText">Этот сайт создан Сергеем Ериным для проектной работы.<br>Project-crypt предназначен для шифровки и дешифровки различных сообщений.<br>Для работы сайта использовался Framework Flask на Python. </p>
+			</div>
+		</aside>
+	</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}
+Шифрование
+{% endblock %}
+{% block links %}
+<style>
+    .form{border-width:1px;margin-bottom:20px;}
+    input {outline:none;}
+</style>
+{% endblock %}
+{% block infohead %}
+Шифрование
+{% endblock %}
+{% block li %}
+<a href="/"><li class='m1'>Вернуться на главную</li></a>
+{% endblock %}
+{% block info %}
+
+{% endblock %}
+{% block other %}
+<p class="Text" align="center">Введите слово для кодирования:</p>
+<form name="test" action="check" method="post">
+    <input  class="form" type="text" autocomplete="off" name="message" size="50" autofocus>
+    <input accesskey="Enter" class="input" type="submit" name="done" value="Кодировать">
+    </form>
+{% endblock %}

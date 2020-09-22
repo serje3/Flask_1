@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}
+Шифрование
+{% endblock %}
+{% block links %}
+<style>
+    .word{
+        word-wrap:break-word;
+    }
+</style>
+{% endblock %}
+{% block infohead %}
+Шифрование
+{% endblock %}
+{% block li %}
+<a href="/encrypt"><li class='m1'>Вернуться назад</li></a>
+<a href="/"><li class='m1'>Вернуться на главную</li></a>
+{% endblock %}
+{% block info %}
+
+{% endblock %}
+{% block other %}
+<h3 class="Text" align="center">Выполнено!</h3>
+<p class="Text" >&nbsp;&nbsp;Закодированное слово:<br> <span class="word">{{ word }}</span></p>
+
+{% endblock %}
